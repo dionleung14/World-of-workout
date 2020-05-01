@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const weight = $("<p>");
       const reps = $("<p>");
       const duration = $("<p>");
+      const editBtn = $("<button>")
       workoutTitle.text(`Title: ${response[i].name}`);
       workoutTitle.addClass("previous-title");
       workoutTitle.attr("data-key", response[i]._id);
@@ -28,10 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
       reps.addClass("previous-reps");
       duration.text(`Duration: ${response[i].duration} minutes`);
       duration.addClass("previous-duration");
+      editBtn.text("Edit workout")
+      editBtn.attr("data-key", response[i]._id)
+      editBtn.addClass("edit-workout-button")
       newDiv.addClass("previous-workouts");
       containerDiv.attr("id", response[i]._id);
       containerDiv.addClass("workout-details");
       newDiv.append(workoutTitle);
+      containerDiv.append(editBtn);
       containerDiv.append(type);
       containerDiv.append(distance);
       containerDiv.append(weight);
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const weight = $("<p>");
     const reps = $("<p>");
     const duration = $("<p>");
+    const editBtn = $("<button>")
     workoutTitle.text(`Title: ${mostRecent.name}`);
     workoutTitle.addClass("most-recent");
     workoutTitle.attr("data-key", mostRecent._id);
@@ -63,9 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
     duration.text(`Duration: ${mostRecent.duration} minutes`);
     duration.addClass("previous-duration");
     newDiv.addClass("previous-workouts");
-    // newDiv.attr("data-id", mostRecent._id);
     newDiv.attr("id", mostRecent._id);
+    editBtn.text("Edit workout")
+    editBtn.attr("data-key", mostRecent._id)
+    editBtn.addClass("edit-workout-button")
     newDiv.append(workoutTitle);
+    newDiv.append(editBtn);
     newDiv.append(type);
     newDiv.append(distance);
     newDiv.append(weight);
@@ -99,5 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const id = this.dataset.key;
     const hiddenDiv = $(`#${id}`);
     hiddenDiv.toggle();
+  });
+
+  $(document).on("click", ".edit-workout-button", function() {
+    const id = this.dataset.key;
+    console.log(id)
+    const parentDiv = $(this).parent()
+    console.log(parentDiv)
+    // const hiddenDiv = $(`#${id}`);
+    // hiddenDiv.toggle();
   });
 });

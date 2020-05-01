@@ -2,6 +2,21 @@ body {
   background-color: salmon;
 }
 
+h1 {
+  text-align: center;
+}
 .workout-details {
   display: none;
+}
+
+#new-workout-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#most-recent-container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
