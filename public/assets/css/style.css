@@ -1,0 +1,7 @@
+body {
+  background-color: salmon;
+}
+
+.previous-exercise, .previous-duration {
+  display: none;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="./../css/style.css" />
+  </head>
+  <body>
+    <h1>Welcome to World of Workouts</h1>
+    <div>
+      <form id="log-workout" action="/submit" method="post">
+        <h2>Log a workout</h2>
+          <input id="name" type="text" name="new-workout" placeholder="Name">
+          <input id="type" type="text" name="new-workout" placeholder="Type">
+          <input id="distance" type="number" name="new-workout" placeholder="Distance">
+          <input id="weight" type="number" name="new-workout" placeholder="Weight">
+          <input id="reps" type="number" name="new-workout" placeholder="Reps">
+          <input id="duration" type="number" name="new-workout" placeholder="duration">
+          <input type="submit">
+        </form>
+    </div>
+    <div id="most-recent-container">
+      <h2>Most recent workout</h2>
+    </div>
+    <div id="previously">
+      <h2>Previous workouts</h2>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.0.min.js"
+      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./../js/script.js"></script>
+  </body>
+</html>
