@@ -2,6 +2,6 @@ body {
   background-color: salmon;
 }
 
-.previous-exercise, .previous-duration {
+.workout-details {
   display: none;
 }

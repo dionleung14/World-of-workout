@@ -1,27 +1,4 @@
-// console.log("connected")
-
 document.addEventListener("DOMContentLoaded", function () {
-  // console.log("DOUBLE CONNECTED");
-
-  // function getResults() {
-  //   $("#previously").empty();
-  //   $.getJSON("/all", function (data) {
-  //     for (var i = 0; i < data.length; i++) {
-  //       console.log(data[i])
-  //       console.log(data[i].title)
-  //       $("#previously").prepend(
-  //         "<p class='data-entry' data-id=" +
-  //           data[i]._id +
-  //           "><span class='dataTitle' data-id=" +
-  //           data[i].title +
-  //           ">" +
-  //           data[i].body.duration +
-  //           "</span><span class='delete'>X</span></p>"
-  //       );
-  //     }
-  //   });
-  // }
-
   // On page load, populate page with previous workouts
   $.ajax({
     url: "/all",
@@ -31,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = response.length - 2; i > -1; i--) {
       const appendToMe = $("#previously");
       const newDiv = $("<div>");
+      const containerDiv = $("<div>")
       const workoutTitle = $("<h3>");
       const type = $("<p>");
       const distance = $("<p>");
@@ -39,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const duration = $("<p>");
       workoutTitle.text(`Title: ${response[i].name}`);
       workoutTitle.addClass("previous-title");
+      workoutTitle.attr("data-key", response[i]._id);
       type.text(`Type: ${response[i].type}`);
       type.addClass("previous-type");
       distance.text(`Distance: ${response[i].distance}`);
@@ -50,13 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
       duration.text(`Duration: ${response[i].duration} minutes`);
       duration.addClass("previous-duration");
       newDiv.addClass("previous-workouts");
-      newDiv.attr("data-id", response[i]._id);
+      containerDiv.attr("id", response[i]._id);
+      containerDiv.addClass("workout-details");
       newDiv.append(workoutTitle);
-      newDiv.append(type);
-      newDiv.append(distance);
-      newDiv.append(weight);
-      newDiv.append(reps);
-      newDiv.append(duration);
+      containerDiv.append(type);
+      containerDiv.append(distance);
+      containerDiv.append(weight);
+      containerDiv.append(reps);
+      containerDiv.append(duration);
+      newDiv.append(containerDiv)
       appendToMe.append(newDiv);
     }
     const mostRecent = response[response.length - 1];
@@ -69,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const reps = $("<p>");
     const duration = $("<p>");
     workoutTitle.text(`Title: ${mostRecent.name}`);
-    workoutTitle.addClass("previous-title");
+    workoutTitle.addClass("most-recent");
+    workoutTitle.attr("data-key", mostRecent._id);
     type.text(`Type: ${mostRecent.type}`);
     type.addClass("previous-type");
     distance.text(`Distance: ${mostRecent.distance}`);
@@ -81,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
     duration.text(`Duration: ${mostRecent.duration} minutes`);
     duration.addClass("previous-duration");
     newDiv.addClass("previous-workouts");
-    newDiv.attr("data-id", mostRecent._id);
+    // newDiv.attr("data-id", mostRecent._id);
+    newDiv.attr("id", mostRecent._id);
     newDiv.append(workoutTitle);
     newDiv.append(type);
     newDiv.append(distance);
@@ -102,9 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
       reps: $("#reps").val(),
       duration: $("#duration").val(),
     };
-
-    console.log(newWorkoutObj)
-
     $.ajax({
       url: "/workouts",
       method: "POST",
@@ -115,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  $(".previous-title").on("click", (event) => {
-    event.stopPropagation();
-    console.log("clicked a title");
+  $(document).on("click", ".previous-title", function() {
+    const id = this.dataset.key;
+    const hiddenDiv = $(`#${id}`);
+    hiddenDiv.toggle();
   });
-  // getResults();
 });
