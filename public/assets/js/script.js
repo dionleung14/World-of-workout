@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = response.length - 2; i > -1; i--) {
       const appendToMe = $("#previously");
       const newDiv = $("<div>");
-      const containerDiv = $("<div>")
+      const containerDiv = $("<div>");
       const workoutTitle = $("<h3>");
       const type = $("<p>");
       const distance = $("<p>");
       const weight = $("<p>");
       const reps = $("<p>");
       const duration = $("<p>");
-      const editBtn = $("<button>")
+      const editBtn = $("<button>");
       workoutTitle.text(`Title: ${response[i].name}`);
       workoutTitle.addClass("previous-title");
       workoutTitle.attr("data-key", response[i]._id);
@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
       reps.addClass("previous-reps");
       duration.text(`Duration: ${response[i].duration} minutes`);
       duration.addClass("previous-duration");
-      editBtn.text("Edit workout")
-      editBtn.attr("data-key", response[i]._id)
-      editBtn.addClass("edit-workout-button")
+      editBtn.text("Edit workout");
+      editBtn.attr("data-key", response[i]._id);
+      editBtn.addClass("edit-workout-button");
       newDiv.addClass("previous-workouts");
       containerDiv.attr("id", response[i]._id);
       containerDiv.addClass("workout-details");
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       containerDiv.append(weight);
       containerDiv.append(reps);
       containerDiv.append(duration);
-      newDiv.append(containerDiv)
+      newDiv.append(containerDiv);
       appendToMe.append(newDiv);
     }
     const mostRecent = response[response.length - 1];
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const weight = $("<p>");
     const reps = $("<p>");
     const duration = $("<p>");
-    const editBtn = $("<button>")
+    const editBtn = $("<button>");
     workoutTitle.text(`Title: ${mostRecent.name}`);
     workoutTitle.addClass("most-recent");
     workoutTitle.attr("data-key", mostRecent._id);
@@ -70,9 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
     duration.addClass("previous-duration");
     newDiv.addClass("previous-workouts");
     newDiv.attr("id", mostRecent._id);
-    editBtn.text("Edit workout")
-    editBtn.attr("data-key", mostRecent._id)
-    editBtn.addClass("edit-workout-button")
+    editBtn.text("Edit workout");
+    editBtn.attr("data-key", mostRecent._id);
+    editBtn.addClass("edit-workout-button");
     newDiv.append(workoutTitle);
     newDiv.append(editBtn);
     newDiv.append(type);
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
       duration: $("#duration").val(),
     };
     $.ajax({
-      url: "/workouts",
+      url: "/submit",
       method: "POST",
       data: newWorkoutObj,
     }).then(function (err, data) {
@@ -104,17 +104,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  $(document).on("click", ".previous-title", function() {
+  $(document).on("click", ".previous-title", function () {
     const id = this.dataset.key;
     const hiddenDiv = $(`#${id}`);
     hiddenDiv.toggle();
   });
 
-  $(document).on("click", ".edit-workout-button", function() {
+  $(document).on("click", ".edit-workout-button", function () {
     const id = this.dataset.key;
-    console.log(id)
-    const parentDiv = $(this).parent()
-    console.log(parentDiv)
+    console.log(id);
+    const parentDiv = $(this).parent();
+    console.log(parentDiv);
     // const hiddenDiv = $(`#${id}`);
     // hiddenDiv.toggle();
   });

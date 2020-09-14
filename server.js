@@ -56,7 +56,7 @@ app.get("/all", (req, res) => {
 });
 
 // logs workout to mongo database
-app.post("/workouts", ({ body }, res) => {
+app.post("/submit", ({ body }, res) => {
   // console.log(req.body)
   const newWorkout = new db.Workout(body);
   newWorkout.timeStamp();
