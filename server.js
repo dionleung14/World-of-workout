@@ -17,14 +17,13 @@ app.use(express.static("./public/assets"));
 
 // mongodb+srv://<username>:<password>@cluster-ltn2pcsk.qd0pq.mongodb.net/heroku_ltn2pcsk?retryWrites=true&w=majority
 
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
-mongoose.connect(
-  `mongodb+srv://<username>:<password>@cluster-ltn2pcsk.qd0pq.mongodb.net/heroku_ltn2pcsk?retryWrites=true&w=majority` ||
-    "mongodb://localhost/workouts",
-  {
-    useNewUrlParser: true,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
+  // mongoose.connect(
+  // `mongodb+srv://<username>:<password>@cluster-ltn2pcsk.qd0pq.mongodb.net/heroku_ltn2pcsk?retryWrites=true&w=majority` ||
+  // "mongodb://localhost/workouts",
+  // {
+  useNewUrlParser: true,
+});
 
 // const databaseUrl = "zoo";
 // const collections = ["animals"];
