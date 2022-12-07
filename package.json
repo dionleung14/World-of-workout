@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/dionleung14/Workout-Tracker#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "logger": "0.0.1",
     "mongojs": "^3.1.0",
     "mongoose": "^5.9.11",
